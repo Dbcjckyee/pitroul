@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     opts = Trollop::options do
       opt :q, 'Search term', :type => String, :default => 'groz'
       opt :max_results, 'Max results', :type => :int, :default => 50
-      opt :channel, "Channel", :type => :string, :default => "UCVWA4btXTFru9qM06FceSag"
+      # opt :channel, "Channel", :type => :string, :default => "UCVWA4btXTFru9qM06FceSag"
     end
 
     client, youtube = get_service
@@ -42,24 +42,24 @@ class ApplicationController < ActionController::Base
             :part => 'snippet',
             # :q => opts[:q],
             :maxResults => opts[:max_results],
-            :channelId => opts[:channel]
+            :channelId => ['UCVWA4btXTFru9qM06FceSag', 'UCv8nzwVPQDRjkPCkEsOdEwA', 'UCK4fo7JDXDFiqrWz6M-f10g'].sample
           }
         )
 
         videos = []
-        channels = []
-        playlists = []
+        # channels = []
+        # playlists = []
 
         # Add each result to the appropriate list, and then display the lists of
         # matching videos, channels, and playlists.
         search_response.data.items.each do |search_result|
           case search_result.id.kind
             when 'youtube#video'
-              videos << "#{search_result.snippet.title} (#{search_result.id.videoId})"
-            when 'youtube#channel'
-              channels << "#{search_result.snippet.title} (#{search_result.id.channelId})"
-            when 'youtube#playlist'
-              playlists << "#{search_result.snippet.title} (#{search_result.id.playlistId})"
+              videos << "#{search_result.id.videoId}"
+            # when 'youtube#channel'
+            #   channels << "#{search_result.snippet.title} (#{search_result.id.channelId})"
+            # when 'youtube#playlist'
+            #   playlists << "#{search_result.snippet.title} (#{search_result.id.playlistId})"
           end
         end
 
@@ -70,9 +70,8 @@ class ApplicationController < ActionController::Base
         puts e.result.body
       end
       results = {
-        vid: videos,
-        chan: channels,
-        play: playlists
+        vid: videos.shuffle
+
       }
       return results
     end
