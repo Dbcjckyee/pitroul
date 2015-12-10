@@ -1,19 +1,17 @@
-<table>
-<tr>
-  <td>
-    <%=link_to "VIDEO", root_path, id: "video" %>
-  </td>
-  <td>
-    <%=link_to "MUSIC", root_path, id: "music" %>
-  </td>
-  <td>
-    <%=link_to "IMAGE", root_path, id: "image" %>
-  </td>
-</tr>
-</table>
-<!-- <iframe width="425" height="349" src=<%=@video%> frameborder="0" allowfullscreen></iframe>
- -->
-<div id ="player">
-  <iframe id="content">
-  </iframe>
+<div id="club">
+
+    <div id="options">
+        <h1>PITBULL ROULETTE</h1>
+      <%=link_to "VIDEO", root_path, id: "video" %>
+
+      <%=link_to "MUSIC", root_path, id: "music" %>
+
+      <%=link_to "IMAGE", root_path, id: "image" %>
+  </div>
+</div>
+  <!-- <iframe width="425" height="349" src=<%=@video%> frameborder="0" allowfullscreen></iframe>
+   -->
+  <div id ="player">
+    <iframe id="content">
+    </iframe>
   </div>

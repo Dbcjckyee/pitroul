@@ -28,12 +28,32 @@
 #content{
   width:600px;
   height:400px;
+  background: rgba(0, 0, 0, .5);
+
 }
 
 body{
-  background-image: image-url("CLUB.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  height: 100%;
-  width: 100%;
+    background-image: url("CLUB.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+}
+
+#club{
+    height:50%;
+    width:50%;
+    margin: auto;
+  background: rgba(0, 0, 0, .5);
+}
+
+
+#options{
+  text-align: center;
+  font-family: 'Andale Mono';
+  color: white;
+  }
+
+a{
+  text-decoration: none;
+  color: white;
 }
