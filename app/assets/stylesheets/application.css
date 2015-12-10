@@ -19,7 +19,7 @@
   position: absolute;
   left:50%;
   background-color: black;
-  top:30%;
+  top:20%;
   display: none;
   color: black;
   transform: translateX(-50%);
@@ -28,4 +28,12 @@
 #content{
   width:600px;
   height:400px;
+}
+
+body{
+  background-image: image-url("CLUB.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 100%;
+  width: 100%;
 }
