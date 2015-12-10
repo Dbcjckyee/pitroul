@@ -13,3 +13,19 @@
  *= require_tree .
  *= require_self
  */
+#player{
+  border:3px solid black;
+  padding: 10px;
+  position: absolute;
+  left:50%;
+  background-color: black;
+  top:30%;
+  display: none;
+  color: black;
+  transform: translateX(-50%);
+}
+
+#content{
+  width:600px;
+  height:400px;
+}

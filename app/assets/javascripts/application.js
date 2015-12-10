@@ -14,3 +14,13 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+$(document).ready(function(){
+  $('#video').click(function(event){
+    event.preventDefault();
+    $.ajax({
+      method: "POST",
+      url: '/media'
+    })
+  })
+
+})
