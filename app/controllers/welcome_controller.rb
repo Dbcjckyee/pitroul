@@ -1,4 +1,3 @@
-include WelcomeHelper
 class WelcomeController < ApplicationController
   def index
     # vidarray = main[:vid]
