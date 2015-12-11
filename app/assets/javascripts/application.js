@@ -18,13 +18,7 @@ $(document).ready(function(){
   $('#video').click(function(event){
     loadPlayer(event, '/media');
     $('#player').toggle('slow')
-    // event.preventDefault();
-    // $('#player').toggle('slow')
     $("body").append('<div class="overlay">');
-    // $.ajax({
-    //   method: "POST",
-    //   url: '/media'
-    // })
   })
 
   $('#music').click(function(event){
@@ -37,7 +31,7 @@ $(document).ready(function(){
 
   $('#close').click(function(event){
     event.preventDefault();
-    $('.overlay').fadeOut("slow", function() { $(this).remove(); });
+    $('.overlay').fadeOut("slow").remove();
     $('#player').toggle('slow')
     $('#content').attr("src", "");
   })
@@ -45,11 +39,6 @@ $(document).ready(function(){
 
   $('#next').click(function(event){
       loadPlayer(event, '/media')
-    //   event.preventDefault();
-    //   $.ajax({
-    //   method: "POST",
-    //   url: '/media'
-    // })
   })
 
   function loadPlayer(trigger, path){
@@ -59,4 +48,6 @@ $(document).ready(function(){
       url: path
     })
   }
+
+
 })
