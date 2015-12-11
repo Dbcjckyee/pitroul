@@ -1,7 +1,8 @@
-
+include WelcomeHelper
 class WelcomeController < ApplicationController
   def index
-    @video = "http://www.youtube.com/embed/#{main[:vid][0]}"
-
+    # vidarray = main[:vid]
+    # @video = "http://www.youtube.com/embed/#{vidarray[20]}"
+    # p @video
   end
 end
