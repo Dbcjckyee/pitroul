@@ -23,6 +23,7 @@
   display: none;
   color: black;
   transform: translateX(-50%);
+  z-index: 6;
 }
 
 #content{
@@ -48,7 +49,7 @@ body{
 }
 
 
-#options{
+.options{
   text-align: center;
   font-family: 'Andale Mono';
   color: white;
@@ -57,4 +58,16 @@ body{
 a{
   text-decoration: none;
   color: white;
+  font-family: 'Andale Mono';
 }
+
+.overlay {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    background-color: rgba(0,0,0,0.3); /* black semi-transparent */
+    z-index: 5;
+}
+

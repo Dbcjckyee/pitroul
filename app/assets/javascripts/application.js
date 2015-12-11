@@ -16,14 +16,18 @@
 //= require_tree .
 $(document).ready(function(){
   $('#video').click(function(event){
-    event.preventDefault();
-    $.ajax({
-      method: "POST",
-      url: '/media'
-    })
+    loadPlayer(event, '/media');
+    $('#player').toggle('slow')
+    // event.preventDefault();
+    // $('#player').toggle('slow')
+    $("body").append('<div class="overlay">');
+    // $.ajax({
+    //   method: "POST",
+    //   url: '/media'
+    // })
   })
 
-$('#music').click(function(event){
+  $('#music').click(function(event){
     event.preventDefault();
     $.ajax({
       method: "POST",
@@ -31,4 +35,28 @@ $('#music').click(function(event){
     })
   })
 
+  $('#close').click(function(event){
+    event.preventDefault();
+    $('.overlay').fadeOut("slow", function() { $(this).remove(); });
+    $('#player').toggle('slow')
+    $('#content').attr("src", "");
+  })
+
+
+  $('#next').click(function(event){
+      loadPlayer(event, '/media')
+    //   event.preventDefault();
+    //   $.ajax({
+    //   method: "POST",
+    //   url: '/media'
+    // })
+  })
+
+  function loadPlayer(trigger, path){
+    trigger.preventDefault();
+    $.ajax({
+      method: "POST",
+      url: path
+    })
+  }
 })

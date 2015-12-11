@@ -31,7 +31,7 @@ module MediaHelper
             :maxResults => opts[:max_results],
             :order => "relevance",
             :type => "video",
-            :pageToken => ["CGQQAA", "CDIQAA", "CJYBEAA", "CMgBEAA", "CPoBEAA", "CKwCEAA", "CN4CEAA", "CJADEAA"].sample
+            :pageToken => ["CGQQAA", "CDIQAA", "CJYBEAA", "CMgBEAA", "CPoBEAA", "CKwCEAA", "CN4CEAA", "CJADEAA", ""].sample
             # :channelId => ['UCVWA4btXTFru9qM06FceSag', 'UCv8nzwVPQDRjkPCkEsOdEwA', 'UCK4fo7JDXDFiqrWz6M-f10g'].sample
           }
         )
@@ -63,7 +63,7 @@ module MediaHelper
         vid: videos.shuffle
 
       }
-      # p search_response.data["nextPageToken"]
+      p search_response.data["nextPageToken"]
       # p results[:vid]
       return results
     end
