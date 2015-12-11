@@ -23,4 +23,12 @@ $(document).ready(function(){
     })
   })
 
+$('#music').click(function(event){
+    event.preventDefault();
+    $.ajax({
+      method: "POST",
+      url: '/music'
+    })
+  })
+
 })

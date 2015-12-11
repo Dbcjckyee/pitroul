@@ -54,5 +54,6 @@ Rails.application.routes.draw do
   #     resources :products
   #   end
   resources :media
+  post 'music' => 'music#create'
 
 end

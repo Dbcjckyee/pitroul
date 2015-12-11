@@ -85,6 +85,14 @@ GEM
       memoist (~> 0.12)
       multi_json (~> 1.11)
       signet (~> 0.6)
+    hashie (2.1.2)
+    httmultiparty (0.3.16)
+      httparty (>= 0.7.3)
+      mimemagic
+      multipart-post
+    httparty (0.13.7)
+      json (~> 1.8)
+      multi_xml (>= 0.5.2)
     i18n (0.7.0)
     jbuilder (2.3.2)
       activesupport (>= 3.0.0, < 5)
@@ -107,9 +115,11 @@ GEM
       mime-types (>= 1.16, < 3)
     memoist (0.13.0)
     mime-types (2.99)
+    mimemagic (0.3.0)
     mini_portile2 (2.0.0)
     minitest (5.8.3)
     multi_json (1.11.2)
+    multi_xml (0.5.5)
     multipart-post (2.0.0)
     nokogiri (1.6.7)
       mini_portile2 (~> 2.0.0.rc2)
@@ -160,6 +170,9 @@ GEM
       faraday (~> 0.9)
       jwt (~> 1.5)
       multi_json (~> 1.10)
+    soundcloud (0.3.2)
+      hashie (~> 2.0)
+      httmultiparty (~> 0.3.0)
     spring (1.5.0)
     sprockets (3.5.2)
       concurrent-ruby (~> 1.0)
@@ -201,6 +214,7 @@ DEPENDENCIES
   rails-observers
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  soundcloud
   spring
   sqlite3
   trollop
