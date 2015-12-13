@@ -29,6 +29,7 @@ $(document).ready(function(){
       vidarray.push(data['link'])
       vidcount = vidarray.length-1
       player.loadVideoById(vidarray[vidcount])
+      //when #video is clicked, vidcount is automatically moved to the far right end regardless of where vidcount currently is.
     })
   })
 
@@ -47,22 +48,7 @@ $(document).ready(function(){
   $('#next').click(function(event){
     // loadPlayer(event, '/media')
     event.preventDefault();
-    if(vidcount == vidarray.length-1){
-      $.ajax({
-        method: "POST",
-        url: '/media'
-      })
-      .done(function(data){
-        vidcount += 1
-        vidarray.push(data['link'])
-        player.loadVideoById(vidarray[vidcount])
-        console.log(vidcount)
-      })
-    }
-    else{
-      vidcount += 1
-      player.loadVideoById(vidarray[vidcount])
-    }
+    nextVideo();
 
   })
 
@@ -93,23 +79,6 @@ $(document).ready(function(){
 
     // $('#content').attr("src", "");
   })
-
-
-  function loadPlayer(trigger, path){
-    trigger.preventDefault();
-    $.ajax({
-      method: "POST",
-      url: path
-    })
-    .done(function(data){
-      vidarray.push(data['link'])
-      player.loadVideoById(vidarray[vidcount])
-      vidcount += 1
-      console.log(vidcount)
-    })
-  }
-
-
 })
  // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
@@ -137,15 +106,7 @@ function onYouTubeIframeAPIReady() {
 //    the player should play for six seconds and then stop.
 function onPlayerStateChange(event) {
   if (event.data === 0) {
-    $.ajax({
-    method: "POST",
-    url: '/media'
-    })
-  .done(function(data){
-      vidcount += 1
-      vidarray.push(data['link'])
-      player.loadVideoById(vidarray[vidcount])
-    })
+    nextVideo();
   }
 }
 // function stopVideo() {
@@ -166,3 +127,22 @@ function embed (id) {
     , document.getElementById("scplayer") // what element to attach player to
   );
 }
+
+  function nextVideo(){
+    if(vidcount == vidarray.length-1){
+        $.ajax({
+          method: "POST",
+          url: '/media'
+        })
+        .done(function(data){
+          vidcount += 1
+          vidarray.push(data['link'])
+          player.loadVideoById(vidarray[vidcount])
+          console.log(vidcount)
+        })
+      }
+    else{
+      vidcount += 1
+      player.loadVideoById(vidarray[vidcount])
+    }
+  }
