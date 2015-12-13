@@ -14,11 +14,56 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+var vidcount = 0;
+var vidarray = [];
 $(document).ready(function(){
   $('#video').click(function(event){
-    loadPlayer(event, '/media');
+    event.preventDefault();
     $('#player').toggle('slow')
     $("body").append('<div class="overlay">');
+    $.ajax({
+      method: "POST",
+      url: '/media'
+    })
+    .done(function(data){
+      vidarray.push(data['link'])
+      vidcount = vidarray.length-1
+      player.loadVideoById(vidarray[vidcount])
+    })
+  })
+
+  $('#prev').click(function(event){
+    event.preventDefault();
+    if(vidcount > 0){
+      vidcount -= 1;
+      player.loadVideoById(vidarray[vidcount])
+      console.log(vidcount)
+    }
+    else{
+      player.loadVideoById(vidarray[vidcount])
+    }
+  })
+
+  $('#next').click(function(event){
+    // loadPlayer(event, '/media')
+    event.preventDefault();
+    if(vidcount == vidarray.length-1){
+      $.ajax({
+        method: "POST",
+        url: '/media'
+      })
+      .done(function(data){
+        vidcount += 1
+        vidarray.push(data['link'])
+        player.loadVideoById(vidarray[vidcount])
+        console.log(vidcount)
+      })
+    }
+    else{
+      vidcount += 1
+      player.loadVideoById(vidarray[vidcount])
+    }
+
   })
 
   $('#music').click(function(event){
@@ -49,9 +94,6 @@ $(document).ready(function(){
     // $('#content').attr("src", "");
   })
 
-  $('#next').click(function(event){
-      loadPlayer(event, '/media')
-  })
 
   function loadPlayer(trigger, path){
     trigger.preventDefault();
@@ -60,7 +102,10 @@ $(document).ready(function(){
       url: path
     })
     .done(function(data){
-      player.loadVideoById(data['link'])
+      vidarray.push(data['link'])
+      player.loadVideoById(vidarray[vidcount])
+      vidcount += 1
+      console.log(vidcount)
     })
   }
 
@@ -97,7 +142,9 @@ function onPlayerStateChange(event) {
     url: '/media'
     })
   .done(function(data){
-    player.loadVideoById(data['link'])
+      vidcount += 1
+      vidarray.push(data['link'])
+      player.loadVideoById(vidarray[vidcount])
     })
   }
 }
