@@ -16,6 +16,25 @@
 //= require_tree .
 var vidcount = 0;
 var vidarray = [];
+function nextVideo(){
+  if(vidcount == vidarray.length-1){
+    $.ajax({
+      method: "POST",
+      url: '/media'
+    })
+    .done(function(data){
+      vidcount += 1
+      vidarray.push(data['link'])
+      player.loadVideoById(vidarray[vidcount])
+      console.log(vidcount)
+    })
+  }
+  else{
+    vidcount += 1
+    player.loadVideoById(vidarray[vidcount])
+  }
+}
+
 $(document).ready(function(){
   $('#video').click(function(event){
     event.preventDefault();
@@ -37,19 +56,14 @@ $(document).ready(function(){
     event.preventDefault();
     if(vidcount > 0){
       vidcount -= 1;
-      player.loadVideoById(vidarray[vidcount])
-      console.log(vidcount)
     }
-    else{
-      player.loadVideoById(vidarray[vidcount])
-    }
+    player.loadVideoById(vidarray[vidcount])
   })
 
   $('#next').click(function(event){
     // loadPlayer(event, '/media')
     event.preventDefault();
     nextVideo();
-
   })
 
   $('#music').click(function(event){
@@ -128,21 +142,3 @@ function embed (id) {
   );
 }
 
-  function nextVideo(){
-    if(vidcount == vidarray.length-1){
-        $.ajax({
-          method: "POST",
-          url: '/media'
-        })
-        .done(function(data){
-          vidcount += 1
-          vidarray.push(data['link'])
-          player.loadVideoById(vidarray[vidcount])
-          console.log(vidcount)
-        })
-      }
-    else{
-      vidcount += 1
-      player.loadVideoById(vidarray[vidcount])
-    }
-  }
