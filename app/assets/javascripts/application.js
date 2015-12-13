@@ -38,7 +38,7 @@ $(document).ready(function(){
     event.preventDefault();
     $('.overlay').fadeOut("slow").remove();
     $('#player').toggle('slow')
-    $('#content').attr("src", "");
+    player.pauseVideo()
   })
 
   $('#close2').click(function(event){
