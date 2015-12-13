@@ -113,7 +113,7 @@ function embed (id) {
   console.log(id)
   SC.oEmbed(id // user or playlist to embed
     , { auto_play: true
-      , maxwidth: 800
+      , width: "100%"
       , maxheight: 130
  } // options
     , document.getElementById("scplayer") // what element to attach player to
