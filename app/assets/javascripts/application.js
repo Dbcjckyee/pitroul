@@ -39,6 +39,21 @@ function nextVideo() {
 }
 
 $(document).ready(function(){
+
+  $('#image').click(function(event){
+    event.preventDefault();
+    $.getJSON("http://api.giphy.com/v1/gifs/search?q=pitbull&api_key=dc6zaTOxFJmzC&limit=100", function(data){
+        var randomnumber=Math.floor(Math.random() * data['data'].length)
+        console.log(data['data'][randomnumber]['embed_url'])
+        var img = document.createElement("IMG")
+        img.src = data['data'][randomnumber]['embed_url']
+        $('#player2').toggle('slow')
+        $('#gif').attr("src", data['data'][randomnumber]['embed_url'])
+
+    })
+
+  })
+
   $('#video').click(function(event){
     event.preventDefault();
     $('#player').toggle('slow')
@@ -68,7 +83,6 @@ $(document).ready(function(){
     event.preventDefault();
     nextVideo();
   })
-
 
 
   $('#close').click(function(event){
