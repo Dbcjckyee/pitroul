@@ -16,25 +16,29 @@
 //= require_tree .
 var vidcount = 0;
 var vidarray = [];
-function nextVideo(){
+function nextVideo() {
+ var checknext = new Promise(function(resolve,reject){
   if(vidcount == vidarray.length-1){
     $.ajax({
       method: "POST",
       url: '/media'
     })
     .done(function(data){
-      vidcount += 1
-      vidarray.push(data['link'])
-      player.loadVideoById(vidarray[vidcount])
+      vidarray.push(data['link']);
       console.log(vidcount)
+      resolve();
     })
   }
-  else{
-    vidcount += 1
-    player.loadVideoById(vidarray[vidcount])
-  }
-}
+  else {
+    resolve();
+    }
+  });
 
+  checknext.then(function(){
+    vidcount++
+    player.loadVideoById(vidarray[vidcount])
+  })
+}
 $(document).ready(function(){
   $('#video').click(function(event){
     event.preventDefault();
