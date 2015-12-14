@@ -25,7 +25,6 @@ function nextVideo() {
     })
     .done(function(data){
       vidarray.push(data['link']);
-      console.log(vidcount)
       resolve();
     })
   }
@@ -33,12 +32,12 @@ function nextVideo() {
     resolve();
     }
   });
-
   checknext.then(function(){
     vidcount++
     player.loadVideoById(vidarray[vidcount])
   })
 }
+
 $(document).ready(function(){
   $('#video').click(function(event){
     event.preventDefault();
@@ -70,18 +69,7 @@ $(document).ready(function(){
     nextVideo();
   })
 
-  $('#music').click(function(event){
-    event.preventDefault();
-    $.ajax({
-      method: "POST",
-      url: '/music'
-    })
-    .done(function(result){
-      $('#scframe').toggle('slow')
-      embed(result['music'])
-      // $('#scplayer').attr("src", result['music']);
-    })
-  })
+
 
   $('#close').click(function(event){
     event.preventDefault();
@@ -126,23 +114,5 @@ function onPlayerStateChange(event) {
   if (event.data === 0) {
     nextVideo();
   }
-}
-// function stopVideo() {
-//   player.stopVideo();
-// }
-SC.initialize({
-    // This is the sample client_id. you should replace this with your own
-    client_id: "5eab25892177da647ada924c74038554"
-});
-
-function embed (id) {
-  console.log(id)
-  SC.oEmbed(id // user or playlist to embed
-    , { auto_play: true
-      , width: "100%"
-      , maxheight: 130
- } // options
-    , document.getElementById("scplayer") // what element to attach player to
-  );
 }
 
