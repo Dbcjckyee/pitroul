@@ -1,6 +1,8 @@
 $(document).ready(function(){
  $('#music').click(function(event){
     event.preventDefault();
+    $("body").append('<div class="overlay">');
+    $('#player2').hide('slow');
     $.ajax({
       method: "POST",
       url: '/music'
@@ -10,6 +12,15 @@ $(document).ready(function(){
       embed(result['music'])
       // $('#scplayer').attr("src", result['music']);
     })
+  })
+
+ $('#close2').click(function(event){
+    event.preventDefault();
+    $('.overlay').fadeOut("slow").remove();
+    $('#scframe').toggle('slow')
+    $('#scplayer').html('')
+
+    // $('#content').attr("src", "");
   })
 })
 

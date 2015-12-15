@@ -37,6 +37,8 @@
   color: black;
   transform: translateX(-50%);
   z-index: 6;
+  text-align: center;
+
 }
 
 #content{
@@ -94,7 +96,9 @@ a{
   transform: translateX(-50%);
   background-color: black;
   text-align: center;
+  z-index: 6;
 }
+
 #gif{
   width: 500px;
   height: 300px;

@@ -42,20 +42,17 @@ $(document).ready(function(){
 
   $('#image').click(function(event){
     event.preventDefault();
+    $('#player2').toggle('slow')
     $.getJSON("http://api.giphy.com/v1/gifs/search?q=pitbull&api_key=dc6zaTOxFJmzC&limit=100", function(data){
         var randomnumber=Math.floor(Math.random() * data['data'].length)
-        console.log(data['data'][randomnumber]['embed_url'])
-        var img = document.createElement("IMG")
-        img.src = data['data'][randomnumber]['embed_url']
-        $('#player2').toggle('slow')
         $('#gif').attr("src", data['data'][randomnumber]['embed_url'])
-
     })
 
   })
 
   $('#video').click(function(event){
     event.preventDefault();
+    $('#player2').hide('slow');
     $('#player').toggle('slow')
     $("body").append('<div class="overlay">');
     $.ajax({
@@ -92,13 +89,11 @@ $(document).ready(function(){
     player.pauseVideo()
   })
 
-  $('#close2').click(function(event){
+  $('#close3').click(function(event){
     event.preventDefault();
-    $('#scframe').toggle('slow')
-    $('#scplayer').html('')
-
-    // $('#content').attr("src", "");
+    $('#player2').toggle('slow')
   })
+
 })
  // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
