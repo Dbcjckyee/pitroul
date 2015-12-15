@@ -14,21 +14,105 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
-$(document).ready(function(){
-  $('#video').click(function(event){
-    event.preventDefault();
+var vidcount = 0;
+var vidarray = [];
+function nextVideo() {
+ var checknext = new Promise(function(resolve,reject){
+  if(vidcount == vidarray.length-1){
     $.ajax({
       method: "POST",
       url: '/media'
     })
+    .done(function(data){
+      vidarray.push(data['link']);
+      resolve();
+    })
+  }
+  else {
+    resolve();
+    }
+  });
+  checknext.then(function(){
+    vidcount++
+    player.loadVideoById(vidarray[vidcount])
   })
+}
 
-$('#music').click(function(event){
+$(document).ready(function(){
+  $('#video').click(function(event){
     event.preventDefault();
+    $('#player').toggle('slow')
+    $("body").append('<div class="overlay">');
     $.ajax({
       method: "POST",
-      url: '/music'
+      url: '/media'
+    })
+    .done(function(data){
+      vidarray.push(data['link'])
+      vidcount = vidarray.length-1
+      player.loadVideoById(vidarray[vidcount])
+      //when #video is clicked, vidcount is automatically moved to the far right end regardless of where vidcount currently is.
     })
   })
 
+  $('#prev').click(function(event){
+    event.preventDefault();
+    if(vidcount > 0){
+      vidcount -= 1;
+    }
+    player.loadVideoById(vidarray[vidcount])
+  })
+
+  $('#next').click(function(event){
+    // loadPlayer(event, '/media')
+    event.preventDefault();
+    nextVideo();
+  })
+
+
+
+  $('#close').click(function(event){
+    event.preventDefault();
+    $('.overlay').fadeOut("slow").remove();
+    $('#player').toggle('slow')
+    player.pauseVideo()
+  })
+
+  $('#close2').click(function(event){
+    event.preventDefault();
+    $('#scframe').toggle('slow')
+    $('#scplayer').html('')
+
+    // $('#content').attr("src", "");
+  })
 })
+ // 2. This code loads the IFrame Player API code asynchronously.
+var tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// 3. This function creates an <iframe> (and YouTube player)
+//    after the API code downloads.
+var player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('content', {
+  events: {
+      'onStateChange': onPlayerStateChange
+    }
+  });
+}
+
+// 4. The API will call this function when the video player is ready.
+
+
+// 5. The API calls this function when the player's state changes.
+//    The function indicates that when playing a video (state=1),
+//    the player should play for six seconds and then stop.
+function onPlayerStateChange(event) {
+  if (event.data === 0) {
+    nextVideo();
+  }
+}
+

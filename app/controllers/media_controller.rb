@@ -1,11 +1,11 @@
 include MediaHelper
 class MediaController < ApplicationController
-
   def create
-    @video = "http://www.youtube.com/embed/#{main[:vid][0]}"
-    respond_to do |filter|
-      filter.js
+    @video = "#{main[:vid][0]}"
+    if request.xhr?
+      render :json => {
+                        :link => @video
+                      }
     end
   end
-
 end

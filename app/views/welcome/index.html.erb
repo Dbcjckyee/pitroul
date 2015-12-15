@@ -1,6 +1,6 @@
 <div id="top">
 
-    <div id="options">
+    <div class="options">
         <h1>PITBULL ROULETTE</h1>
       <%=link_to "VIDEO", root_path, id: "video" %>
 
@@ -11,7 +11,23 @@
 </div>
   <!-- <iframe width="425" height="349" src=<%=@video%> frameborder="0" allowfullscreen></iframe>
    -->
-  <div id ="player">
-    <iframe id="content">
-    </iframe>
+
+
+<div id ="player">
+  <div id="content">
   </div>
+  <div class="options">
+    <a href="" id="prev"><<  </a>
+    <a href="" id="next">  >></a>
+    <br>
+    <br>
+    <a href="" id="close">Close</a>
+  </div>
+</div>
+
+<div id="scframe">
+  <a href="" id="close2">Close</a>
+  <br>
+  <div id="scplayer">
+  </div>
+</div>
