@@ -23,7 +23,7 @@ module MediaHelper
     opts = Trollop::options do
       opt :q, 'Search term', :type => String, :default => 'pitbull music'
       opt :max_results, 'Max results', :type => :int, :default => 50
-      # opt :channel, "Channel", :type => :string, :default => "UCVWA4btXTFru9qM06FceSag"
+
     end
 
     client, youtube = get_service
@@ -40,21 +40,22 @@ module MediaHelper
           :pageToken => ["CGQQAA", "CDIQAA", "CJYBEAA", "CMgBEAA", "CPoBEAA", "CKwCEAA", "CN4CEAA", "CJADEAA", ""].sample
         }
       )
-    videos = []
-    search_response.data.items.each do |search_result|
-      case search_result.id.kind
-        when 'youtube#video'
-          videos << "#{search_result.id.videoId}"
-      end
-    end
+    generator = Random.new
+    # search_response.data.items[generator.rand(50)].id.videoId
+    # videos = []
+    # search_response.data.items.each do |search_result|
+    #   case search_result.id.kind
+    #     when 'youtube#video'
+    #       videos << "#{search_result.id.videoId}"
+    #   end
+    # end
 
     rescue Google::APIClient::TransmissionError => e
       puts e.result.body
     end
     results = {
-      vid: videos.shuffle
+      vid: search_response.data.items[generator.rand(50)].id.videoId
     }
-    p search_response.data["nextPageToken"]
     return results
   end
 end
