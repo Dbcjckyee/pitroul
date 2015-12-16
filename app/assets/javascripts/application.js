@@ -23,7 +23,7 @@ tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var player;
-function onYouTubeIframeAPIReady() {
+function onYouTubeIframeAPIReady(){
   player = new YT.Player('content', {
   events: {
       'onStateChange': onPlayerStateChange
@@ -31,13 +31,13 @@ function onYouTubeIframeAPIReady() {
   });
 }
 
-function onPlayerStateChange(event) {
+function onPlayerStateChange(event){
   if (event.data === 0) {
     nextVideo();
   }
 }
 
-function nextVideo() {
+function nextVideo(){
   var checknext = new Promise(function(resolve,reject){
   if(vidcount == vidarray.length-1){
     $.ajax({
@@ -57,6 +57,17 @@ function nextVideo() {
     vidcount++
     player.loadVideoById(vidarray[vidcount])
   })
+}
+
+function embed (id) {
+  SC.oEmbed(id,
+    {
+      auto_play: true,
+      width: "100%",
+      maxheight: 130
+    },
+    document.getElementById("scplayer")
+  );
 }
 
 $(document).ready(function(){
@@ -113,6 +124,21 @@ $(document).ready(function(){
         $('#scplayer').html('')
       }
     }
+  })
+
+  $('#music').click(function(event){
+    $("body").append('<div class="overlay">');
+    if($('#imageframe').is(':visible')){
+      $('#imageframe').hide('slow');
+    }
+    $.ajax({
+      method: "POST",
+      url: '/music'
+    })
+    .done(function(result){
+      $('#scframe').toggle('slow')
+      embed(result['music'])
+    })
   })
 })
 
