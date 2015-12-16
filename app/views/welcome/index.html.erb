@@ -1,33 +1,41 @@
 <div id="top">
+  <div class="options">
+    <h1>PITBULL ROULETTE</h1>
+    <%=link_to "VIDEO", root_path, id: "video", class: "deadlink" %>
 
-    <div class="options">
-        <h1>PITBULL ROULETTE</h1>
-      <%=link_to "VIDEO", root_path, id: "video" %>
+    <%=link_to "MUSIC", root_path, id: "music", class: "deadlink"  %>
 
-      <%=link_to "MUSIC", root_path, id: "music" %>
-
-      <%=link_to "IMAGE", root_path, id: "image" %>
+    <%=link_to "IMAGE", root_path, id: "image", class: "deadlink"  %>
   </div>
 </div>
   <!-- <iframe width="425" height="349" src=<%=@video%> frameborder="0" allowfullscreen></iframe>
    -->
 
 
-<div id ="player">
+<div id ="videoframe">
+  <a href="" class="close deadlink">Close</a>
+  <br>
   <div id="content">
   </div>
   <div class="options">
-    <a href="" id="prev"><<  </a>
-    <a href="" id="next">  >></a>
+    <a href="" id="prev" class="deadlink"><<  </a>
+    <a href="" id="next" class="deadlink">  >></a>
     <br>
     <br>
-    <a href="" id="close">Close</a>
   </div>
 </div>
 
+
 <div id="scframe">
-  <a href="" id="close2">Close</a>
+  <a href="" class="close deadlink">Close</a>
   <br>
   <div id="scplayer">
   </div>
+</div>
+
+<div id ="imageframe">
+  <a href="" class="close deadlink">Close</a>
+  <br>
+  <iframe id="gif">
+  </iframe>
 </div>

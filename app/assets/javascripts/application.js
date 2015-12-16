@@ -14,10 +14,31 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
 var vidcount = 0;
 var vidarray = [];
-function nextVideo() {
- var checknext = new Promise(function(resolve,reject){
+
+var tag = document.createElement('script');
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+var player;
+function onYouTubeIframeAPIReady(){
+  player = new YT.Player('content', {
+  events: {
+      'onStateChange': onPlayerStateChange
+    }
+  });
+}
+
+function onPlayerStateChange(event){
+  if (event.data === 0) {
+    nextVideo();
+  }
+}
+
+function nextVideo(){
+  var checknext = new Promise(function(resolve,reject){
   if(vidcount == vidarray.length-1){
     $.ajax({
       method: "POST",
@@ -38,10 +59,36 @@ function nextVideo() {
   })
 }
 
+function embed (id) {
+  SC.oEmbed(id,
+    {
+      auto_play: true,
+      width: "100%",
+      maxheight: 130
+    },
+    document.getElementById("scplayer")
+  );
+}
+
 $(document).ready(function(){
-  $('#video').click(function(event){
+
+  $('.deadlink').click(function(event){
     event.preventDefault();
-    $('#player').toggle('slow')
+  })
+
+  $('#image').click(function(event){
+    $('#imageframe').toggle('slow')
+    $.getJSON("http://api.giphy.com/v1/gifs/search?q=pitbull&api_key=dc6zaTOxFJmzC&limit=100", function(gifdata){
+        var randomnumber=Math.floor(Math.random() * gifdata['data'].length)
+        $('#gif').attr("src", gifdata['data'][randomnumber]['embed_url'])
+    })
+  })
+
+  $('#video').click(function(event){
+    if($('#imageframe').is(':visible')){
+      $('#imageframe').hide('slow');
+    }
+    $('#videoframe').toggle('slow')
     $("body").append('<div class="overlay">');
     $.ajax({
       method: "POST",
@@ -56,63 +103,42 @@ $(document).ready(function(){
   })
 
   $('#prev').click(function(event){
-    event.preventDefault();
     if(vidcount > 0){
-      vidcount -= 1;
+      vidcount --;
     }
     player.loadVideoById(vidarray[vidcount])
   })
 
   $('#next').click(function(event){
-    // loadPlayer(event, '/media')
-    event.preventDefault();
     nextVideo();
   })
 
-
-
-  $('#close').click(function(event){
-    event.preventDefault();
-    $('.overlay').fadeOut("slow").remove();
-    $('#player').toggle('slow')
-    player.pauseVideo()
+  $('.close').click(function(event){
+    $(this).parent().toggle('slow');
+    if ($(this).parent().attr('id') != 'imageframe'){
+      $('.overlay').fadeOut("slow").remove();
+      if ($(this).parent().attr('id') == 'videoframe'){
+        player.pauseVideo()
+      }
+      else{
+        $('#scplayer').html('')
+      }
+    }
   })
 
-  $('#close2').click(function(event){
-    event.preventDefault();
-    $('#scframe').toggle('slow')
-    $('#scplayer').html('')
-
-    // $('#content').attr("src", "");
+  $('#music').click(function(event){
+    $("body").append('<div class="overlay">');
+    if($('#imageframe').is(':visible')){
+      $('#imageframe').hide('slow');
+    }
+    $.ajax({
+      method: "POST",
+      url: '/music'
+    })
+    .done(function(result){
+      $('#scframe').toggle('slow')
+      embed(result['music'])
+    })
   })
 })
- // 2. This code loads the IFrame Player API code asynchronously.
-var tag = document.createElement('script');
-
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-
-// 3. This function creates an <iframe> (and YouTube player)
-//    after the API code downloads.
-var player;
-function onYouTubeIframeAPIReady() {
-  player = new YT.Player('content', {
-  events: {
-      'onStateChange': onPlayerStateChange
-    }
-  });
-}
-
-// 4. The API will call this function when the video player is ready.
-
-
-// 5. The API calls this function when the player's state changes.
-//    The function indicates that when playing a video (state=1),
-//    the player should play for six seconds and then stop.
-function onPlayerStateChange(event) {
-  if (event.data === 0) {
-    nextVideo();
-  }
-}
 
