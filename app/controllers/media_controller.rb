@@ -1,11 +1,11 @@
 include MediaHelper
 class MediaController < ApplicationController
   def create
-    @video = "#{main[:vid][0]}"
+    video = getyoutube[:vid]
     if request.xhr?
       render :json => {
-                        :link => @video
-                      }
+        :link => video
+      }
     end
   end
 end

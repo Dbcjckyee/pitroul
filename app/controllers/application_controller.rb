@@ -1,11 +1,3 @@
-require 'rubygems'
-require 'google/api_client'
-require 'trollop'
-gem 'google-api-client', '>0.7'
-
-DEVELOPER_KEY = 'AIzaSyDfP0U1mHMeycwlsm1kWCCSQrgUCDJU9J8'
-YOUTUBE_API_SERVICE_NAME = 'youtube'
-YOUTUBE_API_VERSION = 'v3'
 
 class ApplicationController < ActionController::Base
 
