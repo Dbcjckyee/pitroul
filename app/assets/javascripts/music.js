@@ -14,14 +14,14 @@ $(document).ready(function(){
     })
   })
 
- $('#close2').click(function(event){
-    event.preventDefault();
-    $('.overlay').fadeOut("slow").remove();
-    $('#scframe').toggle('slow')
-    $('#scplayer').html('')
+ // $('#close2').click(function(event){
+ //    event.preventDefault();
+ //    $('.overlay').fadeOut("slow").remove();
+ //    $('#scframe').toggle('slow')
+ //    $('#scplayer').html('')
 
-    // $('#content').attr("src", "");
-  })
+ //    // $('#content').attr("src", "");
+ //  })
 })
 
 

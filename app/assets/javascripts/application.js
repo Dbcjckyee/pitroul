@@ -53,7 +53,7 @@ $(document).ready(function(){
   $('#video').click(function(event){
     event.preventDefault();
     $('#player2').hide('slow');
-    $('#player').toggle('slow')
+    $('#videoframe').toggle('slow')
     $("body").append('<div class="overlay">');
     $.ajax({
       method: "POST",
@@ -82,16 +82,17 @@ $(document).ready(function(){
   })
 
 
-  $('#close').click(function(event){
+  $('.close').click(function(event){
     event.preventDefault();
-    $('.overlay').fadeOut("slow").remove();
-    $('#player').toggle('slow')
-    player.pauseVideo()
-  })
-
-  $('#close3').click(function(event){
-    event.preventDefault();
-    $('#player2').toggle('slow')
+    $(this).parent().toggle('slow')
+    if ($(this).parent().attr('id') == 'videoframe'){
+      $('.overlay').fadeOut("slow").remove();
+      player.pauseVideo()
+    }
+    if ($(this).parent().attr('id') == 'scframe'){
+      $('.overlay').fadeOut("slow").remove();
+      $('#scplayer').html('')
+    }
   })
 
 })
