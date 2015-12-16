@@ -90,13 +90,11 @@ $(document).ready(function(){
     }
     $('#videoframe').toggle('slow')
     $("body").append('<div class="overlay">');
-    debugger;
     $.ajax({
       method: "POST",
       url: '/media'
     })
     .done(function(data){
-      debugger;
       vidarray.push(data['link'])
       vidcount = vidarray.length-1
       player.loadVideoById(vidarray[vidcount])
