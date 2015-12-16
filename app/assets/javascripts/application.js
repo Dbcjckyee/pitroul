@@ -78,7 +78,7 @@ $(document).ready(function(){
 
   $('#image').click(function(event){
     $('#imageframe').toggle('slow')
-    $.getJSON("http://api.giphy.com/v1/gifs/search?q=pitbull&api_key=dc6zaTOxFJmzC&limit=100", function(gifdata){
+    $.getJSON("https://api.giphy.com/v1/gifs/search?q=pitbull&api_key=dc6zaTOxFJmzC&limit=100", function(gifdata){
         var randomnumber=Math.floor(Math.random() * gifdata['data'].length)
         $('#gif').attr("src", gifdata['data'][randomnumber]['embed_url'])
     })
@@ -96,11 +96,7 @@ $(document).ready(function(){
     })
     .done(function(data){
       vidarray.push(data['link'])
-      console.log("vid ajax")
       vidcount = vidarray.length-1
-      console.log(vidcount)
-      console.log(vidarray)
-
       player.loadVideoById(vidarray[vidcount])
       //when #video is clicked, vidcount is automatically moved to the far right end regardless of where vidcount currently is.
     })
