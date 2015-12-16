@@ -96,7 +96,11 @@ $(document).ready(function(){
     })
     .done(function(data){
       vidarray.push(data['link'])
+      console.log("vid ajax")
       vidcount = vidarray.length-1
+      console.log(vidcount)
+      console.log(vidarray)
+
       player.loadVideoById(vidarray[vidcount])
       //when #video is clicked, vidcount is automatically moved to the far right end regardless of where vidcount currently is.
     })
