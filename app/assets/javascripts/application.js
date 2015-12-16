@@ -14,6 +14,10 @@
 //= require jquery_ujs
 //= require turbolinks
 //= require_tree .
+
+var vidcount = 0;
+var vidarray = [];
+
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -32,9 +36,6 @@ function onPlayerStateChange(event) {
     nextVideo();
   }
 }
-
-var vidcount = 0;
-var vidarray = [];
 
 function nextVideo() {
   var checknext = new Promise(function(resolve,reject){
@@ -66,15 +67,16 @@ $(document).ready(function(){
 
   $('#image').click(function(event){
     $('#imageframe').toggle('slow')
-    $.getJSON("http://api.giphy.com/v1/gifs/search?q=pitbull&api_key=dc6zaTOxFJmzC&limit=100", function(data){
-        var randomnumber=Math.floor(Math.random() * data['data'].length)
-        $('#gif').attr("src", data['data'][randomnumber]['embed_url'])
+    $.getJSON("http://api.giphy.com/v1/gifs/search?q=pitbull&api_key=dc6zaTOxFJmzC&limit=100", function(gifdata){
+        var randomnumber=Math.floor(Math.random() * gifdata['data'].length)
+        $('#gif').attr("src", gifdata['data'][randomnumber]['embed_url'])
     })
-
   })
 
   $('#video').click(function(event){
-    $('#imageframe').hide('slow');
+    if($('#imageframe').is(':visible')){
+      $('#imageframe').hide('slow');
+    }
     $('#videoframe').toggle('slow')
     $("body").append('<div class="overlay">');
     $.ajax({
@@ -99,7 +101,6 @@ $(document).ready(function(){
   $('#next').click(function(event){
     nextVideo();
   })
-
 
   $('.close').click(function(event){
     $(this).parent().toggle('slow');
