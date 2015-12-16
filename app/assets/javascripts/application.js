@@ -16,6 +16,7 @@
 //= require_tree .
 var vidcount = 0;
 var vidarray = [];
+
 function nextVideo() {
  var checknext = new Promise(function(resolve,reject){
   if(vidcount == vidarray.length-1){
@@ -40,9 +41,12 @@ function nextVideo() {
 
 $(document).ready(function(){
 
-  $('#image').click(function(event){
+  $('.deadlink').click(function(event){
     event.preventDefault();
-    $('#player2').toggle('slow')
+  })
+
+  $('#image').click(function(event){
+    $('#imageframe').toggle('slow')
     $.getJSON("http://api.giphy.com/v1/gifs/search?q=pitbull&api_key=dc6zaTOxFJmzC&limit=100", function(data){
         var randomnumber=Math.floor(Math.random() * data['data'].length)
         $('#gif').attr("src", data['data'][randomnumber]['embed_url'])
@@ -51,8 +55,7 @@ $(document).ready(function(){
   })
 
   $('#video').click(function(event){
-    event.preventDefault();
-    $('#player2').hide('slow');
+    $('#imageframe').hide('slow');
     $('#videoframe').toggle('slow')
     $("body").append('<div class="overlay">');
     $.ajax({
@@ -68,33 +71,29 @@ $(document).ready(function(){
   })
 
   $('#prev').click(function(event){
-    event.preventDefault();
     if(vidcount > 0){
-      vidcount -= 1;
+      vidcount --;
     }
     player.loadVideoById(vidarray[vidcount])
   })
 
   $('#next').click(function(event){
-    // loadPlayer(event, '/media')
-    event.preventDefault();
     nextVideo();
   })
 
 
   $('.close').click(function(event){
-    event.preventDefault();
-    $(this).parent().toggle('slow')
-    if ($(this).parent().attr('id') == 'videoframe'){
+    $(this).parent().toggle('slow');
+    if ($(this).parent().attr('id') != 'imageframe'){
       $('.overlay').fadeOut("slow").remove();
-      player.pauseVideo()
-    }
-    if ($(this).parent().attr('id') == 'scframe'){
-      $('.overlay').fadeOut("slow").remove();
-      $('#scplayer').html('')
+      if ($(this).parent().attr('id') == 'videoframe'){
+        player.pauseVideo()
+      }
+      else{
+        $('#scplayer').html('')
+      }
     }
   })
-
 })
  // 2. This code loads the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
