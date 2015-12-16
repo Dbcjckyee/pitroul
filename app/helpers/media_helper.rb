@@ -1,6 +1,5 @@
 require 'rubygems'
 require 'google/api_client'
-require 'trollop'
 gem 'google-api-client', '>0.7'
 
 YOUTUBE_API_SERVICE_NAME = 'youtube'
@@ -20,11 +19,7 @@ module MediaHelper
   end
 
   def getyoutube
-    opts = Trollop::options do
-      opt :q, 'Search term', :type => String, :default => 'pitbull music'
-      opt :max_results, 'Max results', :type => :int, :default => 50
 
-    end
 
     client, youtube = get_service
 
@@ -33,8 +28,8 @@ module MediaHelper
         :api_method => youtube.search.list,
         :parameters => {
           :part => 'snippet',
-          :q => opts[:q],
-          :maxResults => opts[:max_results],
+          :q => 'pitbull music',
+          :maxResults => 50,
           :order => "relevance",
           :type => "video",
           :pageToken => ["CGQQAA", "CDIQAA", "CJYBEAA", "CMgBEAA", "CPoBEAA", "CKwCEAA", "CN4CEAA", "CJADEAA", ""].sample
