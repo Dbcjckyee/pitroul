@@ -32,15 +32,6 @@ module MediaHelper
         }
       )
     generator = Random.new
-    # search_response.data.items[generator.rand(50)].id.videoId
-    # videos = []
-    # search_response.data.items.each do |search_result|
-    #   case search_result.id.kind
-    #     when 'youtube#video'
-    #       videos << "#{search_result.id.videoId}"
-    #   end
-    # end
-
     rescue Google::APIClient::TransmissionError => e
       puts e.result.body
     end
