@@ -14,15 +14,11 @@ module MediaHelper
       :application_version => '1.0.0'
     )
     youtube = client.discovered_api(YOUTUBE_API_SERVICE_NAME, YOUTUBE_API_VERSION)
-
     return client, youtube
   end
 
   def getyoutube
-
-
     client, youtube = get_service
-
     begin
       search_response = client.execute!(
         :api_method => youtube.search.list,
