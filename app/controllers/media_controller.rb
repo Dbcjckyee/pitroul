@@ -6,7 +6,8 @@ class MediaController < ApplicationController
       render :json => {
         :link => video
       }
+    else
+      redirect_to root_path
     end
-    redirect_to root_path
   end
 end

@@ -6,7 +6,8 @@ class MusicController < ApplicationController
       render :json => {
         :music => tracks.shuffle[0][:permalink_url]
       }
+    else
+      redirect_to root_path
     end
-    redirect_to root_path
   end
 end
