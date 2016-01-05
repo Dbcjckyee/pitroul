@@ -39,18 +39,18 @@ function onPlayerStateChange(event){
 
 function nextVideo(){
   var checknext = new Promise(function(resolve,reject){
-  if(vidcount == vidarray.length-1){
-    $.ajax({
-      method: "GET",
-      url: '/media'
-    })
-    .done(function(data){
-      vidarray.push(data['link']);
+    if(vidcount == vidarray.length-1){
+      $.ajax({
+        method: "GET",
+        url: '/media'
+      })
+      .done(function(data){
+        vidarray.push(data['link']);
+        resolve();
+      })
+    }
+    else {
       resolve();
-    })
-  }
-  else {
-    resolve();
     }
   });
   checknext.then(function(){
