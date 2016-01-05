@@ -41,7 +41,7 @@ function nextVideo(){
   var checknext = new Promise(function(resolve,reject){
   if(vidcount == vidarray.length-1){
     $.ajax({
-      method: "POST",
+      method: "GET",
       url: '/media'
     })
     .done(function(data){
@@ -91,7 +91,7 @@ $(document).ready(function(){
     $('#videoframe').toggle('slow')
     $("body").append('<div class="overlay">');
     $.ajax({
-      method: "POST",
+      method: "GET",
       url: '/media'
     })
     .done(function(data){
@@ -132,7 +132,7 @@ $(document).ready(function(){
       $('#imageframe').hide('slow');
     }
     $.ajax({
-      method: "POST",
+      method: "GET",
       url: '/music'
     })
     .done(function(result){

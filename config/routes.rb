@@ -53,7 +53,7 @@ Rails.application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-  post 'media' => 'media#create'
-  post 'music' => 'music#create'
-  post 'images' => 'images#create'
+  get 'media' => 'media#create'
+  get 'music' => 'music#create'
+  get 'images' => 'images#create'
 end
