@@ -81,7 +81,8 @@ $(document).ready(function(){
     $.getJSON("https://api.giphy.com/v1/gifs/search?q=pitbull&api_key=dc6zaTOxFJmzC&limit=100", function(gifdata){
         var randomnumber=Math.floor(Math.random() * gifdata['data'].length)
         $('#gif').attr("src", gifdata['data'][randomnumber]['embed_url'])
-    })
+      })
+    //the giphy api key is public because the api is in open beta. there is a single public key for all use.
   })
 
   $('#video').click(function(event){
