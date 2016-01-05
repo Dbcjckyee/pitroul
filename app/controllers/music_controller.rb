@@ -7,5 +7,6 @@ class MusicController < ApplicationController
         :music => tracks.shuffle[0][:permalink_url]
       }
     end
+    redirect_to root_path
   end
 end
