@@ -1,7 +1,16 @@
-== README
+== PITBULL ROULETTE
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a Rails app that delivers nonstop Pitbull in music, video, and image form. 
+
+== Demo
+
+An online demo is available at https://sleepy-ocean-4068.herokuapp.com/
+
+== Features
+
+*Works with the YouTube API to pull a random Pitbull YouTube video into the app. Once a video loads, users can either queue up the next one or view a previous one. Another video plays automatically when one ends. 
+
+*Works with the SoundCloud API to deliver a random Pitbull song. This feature still need improvement. The app can currently pull up one song at a time and requires the user to enter/exit the song view to select another song. 
 
 Things you may want to cover:
 
