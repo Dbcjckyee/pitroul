@@ -25,7 +25,6 @@ gem 'bootstrap-sass', '~> 3.3.0.1'
 gem 'autoprefixer-rails'
 gem 'rails-observers'
 gem 'google-api-client', '>0.7'
-gem 'trollop'
 gem 'soundcloud'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
