@@ -2,6 +2,8 @@
 
 This is a Rails app that delivers nonstop Pitbull in music, video, and image form.
 
+![Mr. Bull](/app/assets/images/pitbull.png)
+
 # Demo
 
 An online demo is available at https://sleepy-ocean-4068.herokuapp.com/
