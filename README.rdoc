@@ -12,26 +12,17 @@ An online demo is available at https://sleepy-ocean-4068.herokuapp.com/
 
 *Works with the SoundCloud API to deliver a random Pitbull song. This feature still need improvement. The app can currently pull up one song at a time and requires the user to enter/exit the song view to select another song. 
 
-Things you may want to cover:
+*Works with the Giphy API to retrieve a random Pitbull gif. The Giphy API is still in beta form. This limits the complexity for image searching and retrieval. As a result, the image pool is rather shallow, and the app can return non-rapper Pitbull gifs. 
 
-* Ruby version
+==  Installation
 
-* System dependencies
+Clone this repo onto your desktop and run <tt>bundle install</tt> to retrieve the necessary gems. 
 
-* Configuration
+== Usage
 
-* Database creation
+After cloning the repo and installing the gems, you can run <tt>rails s</tt> to start your local server. The app can then be access at http://localhost:3000
 
-* Database initialization
+== License
 
-* How to run the test suite
+This project is licensed under the terms of the MIT license: https://github.com/IgorAntun/node-chat/blob/master/LICENSE.md
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
