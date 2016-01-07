@@ -20,12 +20,14 @@ An online demo is available at https://sleepy-ocean-4068.herokuapp.com/
 
 Clone this repo onto your desktop and run `bundle install` to retrieve the necessary gems.
 
+  ```
   git clone https://github.com/Juxtaposeidon/pitroul.git
   bundle install
+  ```
 
 # Usage
 
-After cloning the repo and installing the gems, you can run `rails s` to start your local server. The app can then be accessed at http://localhost:3000
+After cloning the repo and installing the gems, you can run `rails s` to start your local server. The app can then be accessed at http://localhost:3000 in a web browser. 
 
 # Issues
 
