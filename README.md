@@ -33,7 +33,7 @@ After cloning the repo and installing the gems, you can run `rails s` to start y
 
 * The SoundCloud music feature does not automatically queue up the next song when the current song ends. Users need to close and reopen the music window to play the next song.
 
-* The Giphy API is still in beta and limits request query functionality. Giphy searches also turn up non-rapper Pitbull iamges.
+* The Giphy API is still in beta and possesses limited querying functionality. Giphy searches also turn up non-rapper Pitbull images.
 
 # License
 
