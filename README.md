@@ -6,7 +6,7 @@ This is a Rails app that delivers nonstop Pitbull in music, video, and image for
 
 # Demo
 
-An online demo is available at https://sleepy-ocean-4068.herokuapp.com/
+An online demo is available at http://pitbullroulette.herokuapp.com/
 
 # Features
 
